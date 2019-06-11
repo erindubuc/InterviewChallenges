@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DynamicProgrammingTests
 {
     [TestFixture]
-    public class Tests
+    public class ClimbingStairsTests
     {
         public int numberOfStairs;
         [Test]
