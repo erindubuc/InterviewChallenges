@@ -45,10 +45,10 @@ namespace DynamicProgramming
             // Create new array to hold max values
             int[] maxAmount = new int[nums.Length];
 
-            // Put 0 as first value in maxAmount so either the first or second index of nums can be added to it
-            maxAmount[0] = 0;
+            // Put first value from nums in maxAmount 
+            maxAmount[0] = nums[0];
 
-            // Compare first and second house, Choose which house to take from and make FIRST max amount 
+            // Compare first and second house, Choose which house to take from and make actual max amount 
             maxAmount[1] = Math.Max(nums[0], nums[1]);
 
             // Begin checking third house
