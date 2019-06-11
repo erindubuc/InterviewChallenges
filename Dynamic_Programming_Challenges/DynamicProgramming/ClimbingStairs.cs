@@ -28,6 +28,8 @@ namespace DynamicProgramming
                 return numberOfStairs;
             if (numberOfStairs == 2)
                 return numberOfStairs;
+            if (numberOfStairs == 3)
+                return numberOfStairs;
 
             return HowManyDistinctWaysToClimbStairs(numberOfStairs - 2) + HowManyDistinctWaysToClimbStairs(numberOfStairs - 1);
         }
