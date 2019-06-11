@@ -51,14 +51,11 @@ namespace DynamicProgramming
             // Compare first and second house, Choose which house to take from and make FIRST max amount 
             maxAmount[1] = Math.Max(nums[0], nums[1]);
 
-
             // Begin checking third house
             for (int indexOfRemainingHouses = 2; indexOfRemainingHouses < nums.Length; indexOfRemainingHouses++)
             {
                 // Next num in maxAmount will be the max from either nums[2] + maxAmount[0] OR maxAmount[1]
                 maxAmount[indexOfRemainingHouses] = Math.Max(nums[indexOfRemainingHouses] + maxAmount[indexOfRemainingHouses - 2], maxAmount[indexOfRemainingHouses - 1]);
-
-                
             }
             return maxAmount[maxAmount.Length - 1];
         }

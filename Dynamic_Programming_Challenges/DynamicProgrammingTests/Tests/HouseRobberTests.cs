@@ -90,5 +90,16 @@ namespace DynamicProgrammingTests.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void IfArrayHasNumsElevenNums_ReturnGreatestSumOfAnyNonConsecutiveNums()
+        {
+            nums = new int[11] { 5, 350, 5, 7, 400, 50, 100, 20, 30, 8, 11 };
+
+            int expected = 891;
+            int actual = HouseRobber.MaxAmountOfMoneyFromRobbingHouses(nums);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
