@@ -66,6 +66,18 @@ namespace HashTables
             return sortedList;
         }
 
+        public List<string> GetListOfIngredientsWithMoreThanOneDish(Dictionary<string, List<string>> IngredientsAndTheirDishes)
+        {
+            List<string> ingredientsWithMoreThanOneDish = new List<string>();
+
+            foreach (string ingredient in IngredientsAndTheirDishes.Keys)
+                if (IngredientsAndTheirDishes[ingredient].Count >= 2)
+                {
+                    ingredientsWithMoreThanOneDish.Add(ingredient);
+                }
+
+            return ingredientsWithMoreThanOneDish;  
+        }
 
         public string[][] GroupingDishesByIngredients(string[][] dishes)
         {

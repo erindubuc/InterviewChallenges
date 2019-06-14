@@ -182,5 +182,33 @@ namespace HashTablesTests
             Assert.AreEqual(expected, actual);
 
         }
+
+        [Test]
+        public void GivenDictionaryOfIngredientsAndDishes_ReturnListOfIngredientsWithMoreThanOneValue()
+        {
+            Dictionary<string, List<string>> Ingredients = new Dictionary<string, List<string>>();
+
+            Ingredients.Add("Bread", new List<string> { "Sandwich" });
+            Ingredients.Add("Cheese", new List<string> { "Quesadilla", "Sandwich" });
+            Ingredients.Add("Chicken", new List<string> { "Quesadilla" });
+            Ingredients.Add("Cucumber", new List<string> { "Salad" });
+            Ingredients.Add("Dough", new List<string> { "Pizza" });
+            Ingredients.Add("Salad", new List<string> { "Salad", "Sandwich" });
+            Ingredients.Add("Sauce", new List<string> { "Salad", "Quesadilla", "Sandwich" });
+            Ingredients.Add("Sausage", new List<string> { "Pizza" });
+            Ingredients.Add("Tomato", new List<string> { "Salad", "Pizza", "Sandwich" });
+
+            List<string> ingredientsWithMoreThanOneDish = new List<string>();
+
+            ingredientsWithMoreThanOneDish.Add("Cheese");
+            ingredientsWithMoreThanOneDish.Add("Salad");
+            ingredientsWithMoreThanOneDish.Add("Sauce");
+            ingredientsWithMoreThanOneDish.Add("Tomato");
+
+            var expected = ingredientsWithMoreThanOneDish;
+            var actual = dishesToMake.GetListOfIngredientsWithMoreThanOneDish(Ingredients);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
