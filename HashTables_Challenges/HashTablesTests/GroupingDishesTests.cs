@@ -150,5 +150,37 @@ namespace HashTablesTests
             Assert.AreEqual(expected, actual);
 
         }
+
+        [Test]
+        public void GivenListOfIngredients_ReturnListSortedLexicographically()
+        {
+            List<string> listOfIngredients = new List<string>();
+            listOfIngredients.Add("Bread");
+            listOfIngredients.Add("Cheese");
+            listOfIngredients.Add("Tomato");
+            listOfIngredients.Add("Cucumber");
+            listOfIngredients.Add("Dough");
+            listOfIngredients.Add("Salad");
+            listOfIngredients.Add("Sauce");
+            listOfIngredients.Add("Chicken");
+            listOfIngredients.Add("Sausage");
+
+            List<string> sortedList = new List<string>();
+            sortedList.Add("Bread");
+            sortedList.Add("Cheese");
+            sortedList.Add("Chicken");
+            sortedList.Add("Cucumber");
+            sortedList.Add("Dough");
+            sortedList.Add("Salad");
+            sortedList.Add("Sauce");
+            sortedList.Add("Sausage");
+            sortedList.Add("Tomato");
+
+            var expected = sortedList;
+            var actual = dishesToMake.GetSortedListOfIngredients(listOfIngredients);
+
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }

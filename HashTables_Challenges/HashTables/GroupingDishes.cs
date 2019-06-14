@@ -57,6 +57,15 @@ namespace HashTables
             return keys;
         }
 
+        public List<string> GetSortedListOfIngredients(List<string> ingredients)
+        {
+            List<string> sortedList = new List<string>();
+            ingredients.Sort();
+            sortedList.AddRange(ingredients);
+
+            return sortedList;
+        }
+
 
         public string[][] GroupingDishesByIngredients(string[][] dishes)
         {
