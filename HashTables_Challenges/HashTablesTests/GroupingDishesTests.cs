@@ -88,15 +88,64 @@ namespace HashTablesTests
             Ingredients.Add("Cucumber", new List<string> { "Salad" });
             Ingredients.Add("Dough", new List<string> { "Pizza" });
             Ingredients.Add("Salad", new List<string> { "Salad", "Sandwich" });
+            Ingredients.Add("Sauce", new List<string> { "Salad", "Pizza", "Quesadilla" });
+            Ingredients.Add("Sausage", new List<string> { "Pizza" });
+            Ingredients.Add("Tomato", new List<string> { "Salad", "Pizza", "Sandwich" });
+
+            foreach (var kvp in Ingredients)
+            {
+                Console.WriteLine("key: {0}", kvp.Key);
+
+                foreach (string val in kvp.Value)
+                {
+                    Console.WriteLine("Values: {0}", val);
+                }
+
+            }
+
+            var expected = Ingredients;
+            var actual = dishesToMake.AddIngredientsAndTheirDishesToDictionary(dishes);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [Test]
+        public void GivenDictionary_ReturnListofIngredientsWithMoreThanOneDish()
+        {
+            string[][] dishes = {
+                new string[] { "Salad", "Tomato", "Cucumber", "Salad", "Sauce" },
+                new string [] { "Pizza", "Tomato", "Sausage", "Sauce", "Dough" },
+                new string[] { "Quesadilla","Chicken","Cheese","Sauce" },
+                new string[] { "Sandwich", "Salad", "Bread", "Tomato", "Cheese" }
+            };
+
+            Dictionary<string, List<string>> Ingredients = new Dictionary<string, List<string>>();
+
+            Ingredients.Add("Bread", new List<string> { "Sandwich" });
+            Ingredients.Add("Cheese", new List<string> { "Quesadilla", "Sandwich" });
+            Ingredients.Add("Chicken", new List<string> { "Quesadilla" });
+            Ingredients.Add("Cucumber", new List<string> { "Salad" });
+            Ingredients.Add("Dough", new List<string> { "Pizza" });
+            Ingredients.Add("Salad", new List<string> { "Salad", "Sandwich" });
             Ingredients.Add("Sauce", new List<string> { "Salad", "Quesadilla", "Sandwich" });
             Ingredients.Add("Sausage", new List<string> { "Pizza" });
             Ingredients.Add("Tomato", new List<string> { "Salad", "Pizza", "Sandwich" });
 
-            foreach (var item in Ingredients)
-                Console.WriteLine("key: {0}, Value: {1}", item.Key, item.Value);
 
-            var expected = Ingredients;
-            var actual = dishesToMake.AddIngredientsAndTheirDishesToDictionary(dishes);
+            List<string> listOfIngredients = new List<string>();
+            listOfIngredients.Add("Bread");
+            listOfIngredients.Add("Cheese");
+            listOfIngredients.Add("Chicken");
+            listOfIngredients.Add("Cucumber");
+            listOfIngredients.Add("Dough");
+            listOfIngredients.Add("Salad");
+            listOfIngredients.Add("Sauce");
+            listOfIngredients.Add("Sausage");
+            listOfIngredients.Add("Tomato");
+
+            var expected = listOfIngredients;
+            var actual = dishesToMake.GetListOfIngredients(Ingredients);
 
             Assert.AreEqual(expected, actual);
 

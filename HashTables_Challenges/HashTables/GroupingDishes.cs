@@ -30,38 +30,31 @@ namespace HashTables
         public Dictionary<string, List<string>> AddIngredientsAndTheirDishesToDictionary(string[][] dishes)
         {
             Dictionary<string, List<string>> IngredientsAndTheirDishes = new Dictionary<string, List<string>>();
-            /*
-            string dish;
-            for (int row = 0; row < dishes[0].Length; row++)
-            {
-                dish = dishes[row][0];
-                Console.WriteLine("dish = {0}", dish);
-            }
-            */
+   
             
             for (int row = 0; row < dishes.Length; row++)
             {
                 string dish = dishes[row][0];
 
-                for (int col = 0; col < dishes[row].Length; col++)
+                for (int col = 1; col < dishes[row].Length; col++)
                 {
-                    
-                    if (IngredientsAndTheirDishes.ContainsKey(dishes[row][col]))
-                    {
-                        IngredientsAndTheirDishes[dishes[row][col]].Add(dishes[row][0]);
+                    string ingredient = dishes[row][col];
 
-                    }
-                        
-                    else
-                    {
-                        IngredientsAndTheirDishes.Add(dishes[row][col], new List<string> { dish });
+                    if (!IngredientsAndTheirDishes.ContainsKey(ingredient))
+                        IngredientsAndTheirDishes.Add(ingredient, new List<string>());
 
-                    }
-
+                    IngredientsAndTheirDishes[ingredient].Add(dish);
+                    //IngredientsAndTheirDishes[dishes[row][col]].Add(dishes[row][0]);
                 }
             }
             
             return IngredientsAndTheirDishes;
+        }
+
+        public List<string> GetListOfIngredients(Dictionary<string, List<string>> Ingredients)
+        {
+            List<string> keys = Ingredients.Keys.ToArray().ToList();
+            return keys;
         }
 
 
