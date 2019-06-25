@@ -12,12 +12,12 @@ namespace HashTablesTests
     public class GroupingDishesTests
     {
         GroupingDishes dishesToMake = new GroupingDishes();
-        
+
 
         [Test]
         public void ForTwoWithOneIngredientEach_AddToDictionaryAndReturnIt()
         {
-           string[][] dishes = {
+            string[][] dishes = {
                 new string[] { "Salad", "Tomato" },
                 new string [] { "Pizza", "Tomato" }
             };
@@ -34,7 +34,7 @@ namespace HashTablesTests
             var actual = dishesToMake.AddIngredientsAndCountsToDictionary(dishes);
 
             Assert.AreEqual(expected, actual);
-            
+
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace HashTablesTests
             listOfIngredients.Add("Tomato");
 
             var expected = listOfIngredients;
-            var actual = dishesToMake.GetListOfIngredients(Ingredients);
+            var actual = dishesToMake.GetListOfIngredientsFromDictionary(Ingredients);
 
             Assert.AreEqual(expected, actual);
 
@@ -165,18 +165,19 @@ namespace HashTablesTests
             listOfIngredients.Add("Chicken");
             listOfIngredients.Add("Sausage");
 
-            List<string> sortedList = new List<string>();
-            sortedList.Add("Bread");
-            sortedList.Add("Cheese");
-            sortedList.Add("Chicken");
-            sortedList.Add("Cucumber");
-            sortedList.Add("Dough");
-            sortedList.Add("Salad");
-            sortedList.Add("Sauce");
-            sortedList.Add("Sausage");
-            sortedList.Add("Tomato");
+            string[][] sortedListsAsArrays ={
+                new string[] { "Bread" },
+                new string [] { "Cheese" },
+                new string[] { "Chicken" },
+                new string[] { "Cucumber" },
+                new string[] { "Dough" },
+                new string [] { "Salad" },
+                new string[] { "Sauce" },
+                new string[] { "Sausage" },
+                new string[] { "Tomato" }
+            };
 
-            var expected = sortedList;
+            var expected = sortedListsAsArrays;
             var actual = dishesToMake.GetSortedListOfIngredients(listOfIngredients);
 
             Assert.AreEqual(expected, actual);
@@ -210,5 +211,46 @@ namespace HashTablesTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void ForArraysOfDishesWithIngreds_ReturnArraysOfIngredsWithDishes()
+        {
+            Dictionary<string, List<string>> Ingredients = new Dictionary<string, List<string>>();
+
+            Ingredients.Add("Bread", new List<string> { "Sandwich" });
+            Ingredients.Add("Cheese", new List<string> { "Quesadilla", "Sandwich" });
+            Ingredients.Add("Chicken", new List<string> { "Quesadilla" });
+            Ingredients.Add("Cucumber", new List<string> { "Salad" });
+            Ingredients.Add("Dough", new List<string> { "Pizza" });
+            Ingredients.Add("Salad", new List<string> { "Salad", "Sandwich" });
+            Ingredients.Add("Sauce", new List<string> { "Salad", "Quesadilla", "Sandwich" });
+            Ingredients.Add("Sausage", new List<string> { "Pizza" });
+            Ingredients.Add("Tomato", new List<string> { "Salad", "Pizza", "Sandwich" });
+
+            string[][] dishes = {
+                new string[] { "Salad", "Tomato", "Cucumber", "Salad", "Sauce" },
+                new string [] { "Pizza", "Tomato", "Sausage", "Sauce", "Dough" },
+                new string[] { "Quesadilla","Chicken","Cheese","Sauce" },
+                new string[] { "Sandwich", "Salad", "Bread", "Tomato", "Cheese" }
+            };
+
+            string[][] returned = {
+                new string[] { "Cheese", "Quesadilla", "Sandwich" },
+                new string [] { "Salad", "Salad", "Sandwich" },
+                new string[] { "Sauce","Quesadilla","Salad","Sandwich" },
+                new string[] { "Tomato", "Pizza", "Salad", "Sandwich" }
+            };
+
+            foreach (var s in returned)
+                Console.WriteLine("ingredient: {0}", s);
+
+            var expected = returned;
+            var actual = dishesToMake.AddDishesToIngredientsList(Ingredients);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        
+
     }
 }
